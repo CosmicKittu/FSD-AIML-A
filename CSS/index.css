@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
+.con{
+    display: flex;
+    width: 100vw;
+    height: 100vw;
+    flex-wrap: wrap;
+    background-color: blanchedalmond;
+    padding: 50px;
+}
+.header{
+    width: 100vw;
+    height: 10%;
+    background-color: blueviolet;
+}
+
