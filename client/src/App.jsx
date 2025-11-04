@@ -1,34 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import Cart from './components/Cart'
+import Header from './components/Header'
+import { useState, useEffect } from 'react'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  // const items = [
+  //   {Image:"", title:'laptop', price:'100'},
+  //   {Image:"", title:'lapt', price:'100'},
+  //   {Image:"", title:'laptop bag', price:'100'}
+  // ]
+  const [items, setItems] =useState([])
+  useEffect(()=>{
+     async function fdata(){
+      const res = await fetch('https://fakestoreapi.com/products')
+      const data = await res.json()
+      setItems(data);
+     } 
+    fdata();
+  },[])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <Header />
+      <div className='container'>
+        {items.map((t, i)=>(
+        
+        <Cart key={i} title ={t.title} price={t.price} image={t.image}/>
+      ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      
+
+    </div>
   )
 }
 
