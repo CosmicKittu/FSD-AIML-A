@@ -10,6 +10,7 @@ const App = () => {
   //   {Image:"", title:'laptop bag', price:'100'}
   // ]
   const [items, setItems] =useState([])
+  const [cart, setcart] =useState(0)
   useEffect(()=>{
      async function fdata(){
       const res = await fetch('https://fakestoreapi.com/products')
@@ -21,11 +22,11 @@ const App = () => {
 
   return (
     <div>
-      <Header />
+      <Header cart={cart}/>
       <div className='container'>
         {items.map((t, i)=>(
         
-        <Cart key={i} title ={t.title} price={t.price} image={t.image}/>
+        <Cart key={i} title ={t.title} price={t.price} image={t.image} update={setcart}/>
       ))}
       </div>
       
